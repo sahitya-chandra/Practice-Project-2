@@ -1,0 +1,166 @@
+
+nav {
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+a {
+    transition: all 0.4s ease;
+}
+
+a:hover {
+    scale: 1.05;
+}
+
+.left {
+    flex: 3;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    width: 28px;
+}
+
+.right {
+    flex: 2;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #fcf5f3;
+    height: 100%;
+}
+
+.right a{
+    padding: 12px 24px;
+    margin: 20px;
+}
+
+.useeer {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.useeer img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+    
+}
+
+.profile {
+    padding: 10px 20px;
+    background-color: #fece51;
+    cursor: pointer;
+    border: none;
+    position: relative;
+}
+
+.notification {
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    background-color: #fece53;
+}
+
+.menuIcon {
+    display: none;
+    z-index: 2;
+}
+
+.menuIcon img {
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+}
+
+.menu {
+    position: absolute;
+    top: 0;
+    right: -50%;
+    background-color: black;
+    color: white;
+    height: 100vh;
+    width: 50%;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+.active {
+    right:0
+}
+
+@media (max-width: 810px)  {
+    .logo span {
+        display: none;
+    }
+
+    .right {
+        background-color: transparent;
+    }
+   
+}
+
+@media (max-width:500px) {
+    .useeer img {
+        margin-left: 20px;
+    }
+    .useeer span {
+        display: none;
+    }
+}
+
+@media (max-width: 414px) {
+    a {
+        display: none;
+    }
+
+    .logo span {
+        display: initial;
+    }
+
+    .menuIcon {
+        display: initial;
+    }
+
+    .menu a {
+        display: initial;
+    }
+
+    .useeer span {
+        display: none;
+    }
+
+
+}
+
