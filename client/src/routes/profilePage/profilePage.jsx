@@ -1,9 +1,30 @@
+import "./profilePage.css"
+import { Link, useNavigate } from "react-router-dom";
 import Chat from "../../components/chat/Chat";
 import List from "../../components/List/List";
-import "./profilePage.css"
+import apiRequest from "../../lib/apiRequest";
+import { useRecoilValue } from "recoil";
+import { useAuth } from "../../store/hooks/useAuth";
+import { currentUserAtom } from "../../store/atom/atom";
+import { useEffect } from "react";
+
 
 const ProfilePage = () => {
 
+    const navigate = useNavigate()
+    const currentUser = useRecoilValue(currentUserAtom)
+    const updateUser = useAuth()
+
+    const handleLogout = async () => {
+
+        try {
+            await apiRequest.post("/auth/logout")
+            updateUser(null)
+            navigate('/')
+        } catch(err) {
+            console.log(err)
+        }
+    }
 
     return (
         <div className="profilepage">
@@ -11,22 +32,24 @@ const ProfilePage = () => {
                 <div className="wrapp">
                     <div className="titleeee">
                         <h1>User Information</h1>
+                        <Link to='/profile/update'>
                         <button>Update Profile</button>
+                        </Link>
                     </div>
                     <div className="inform">
                         <span>
                         Avatar:
                         <img
-                            src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                            alt=""
+                            src={ "/noavatar.jpg"}
                         />
                         </span>
                         <span>
-                        Username: <b>John Doe</b>
+                        Username: <b>{currentUser.username}</b>
                         </span>
                         <span>
-                        E-mail: <b>john@gmail.com</b>
+                        E-mail: <b>{currentUser.email}</b>
                         </span>
+                        <button onClick={handleLogout}>Logout</button>
                     </div>
                     <div className="titleeee">
                         <h1>My List</h1>

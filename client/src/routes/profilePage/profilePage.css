@@ -52,6 +52,16 @@
     gap: 15px;
 }
 
+.inform button {
+    width: 80px;
+    background-color: teal;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
 .chatContainer {
     flex: 2;
     background-color: #fcf5f3;

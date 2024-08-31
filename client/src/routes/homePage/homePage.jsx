@@ -1,8 +1,13 @@
+import { useRecoilValue } from 'recoil';
 import SearchBar from '../../components/searchBar/SearchBar';
 import './homePage.css'
+import { currentUserAtom } from '../../store/atom/atom';
 
 const HomePage = () => {
 
+    const currentUser = useRecoilValue(currentUserAtom)
+
+    console.log(currentUser)
 
     return (
         <div className='homepage'>

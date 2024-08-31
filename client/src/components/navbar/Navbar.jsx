@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import './Navbar.css'
 import { Link } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { currentUserAtom } from '../../store/atom/atom';
 
 const Navbar = () => {
 
-    const user = false;
+    const currentUser = useRecoilValue(currentUserAtom)
 
     const [open, setOpen] = useState(false)
 
@@ -21,9 +23,9 @@ const Navbar = () => {
                 <a href="/">Agents</a>
             </div>
             <div className="right">
-                {!user?(
+                {currentUser?(
                     <div className='useeer'>
-                        <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
+                        <img src={ "/noavatar.jpg"} />
                         <span>John Doe</span>
                         <Link to="/profile" className="profile">
                             <div className="notification">3</div>
@@ -32,8 +34,8 @@ const Navbar = () => {
                     </div>
                 ):(
                 <>
-                    <a href="/">Sign in</a>
-                    <a href="/" className='button'>Sign up</a>
+                    <a href="/login">Sign in</a>
+                    <a href="/register" className='button'>Sign up</a>
                 </>
                 )}
                 <div className="menuIcon">
