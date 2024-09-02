@@ -7,8 +7,6 @@ const HomePage = () => {
 
     const currentUser = useRecoilValue(currentUserAtom)
 
-    console.log(currentUser)
-
     return (
         <div className='homepage'>
             <div className="textContainer">

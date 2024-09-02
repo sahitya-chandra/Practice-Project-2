@@ -11,10 +11,12 @@
         margin: 30px 50px 100px 0px;
   
         form {
+          height: auto;
           display: flex;
           justify-content: space-between;
           flex-wrap: wrap;
           gap: 20px;
+          border: none;
   
           .iitem {
             width: 30%;

@@ -33,15 +33,16 @@ form {
 input {
     border: none;
     padding: 0 10px ;
-    width: 150px;
+    width: 120px;
 
 }
 
 form button {
     border: none;
+    width: 60px ;
+    height: 100%;
     cursor: pointer;
     background-color: #fece53;
-    flex: 1;
 }
 
 form button img {

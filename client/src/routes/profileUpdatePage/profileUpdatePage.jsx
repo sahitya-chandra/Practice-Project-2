@@ -14,6 +14,7 @@ function ProfileUpdatePage() {
   const currentUser = useRecoilValue(currentUserAtom)
 
   const handleSubmit = async (e) => {
+    setError("")
     e.preventDefault()
     const formData = new FormData(e.target)
 

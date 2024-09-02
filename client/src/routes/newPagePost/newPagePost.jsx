@@ -1,16 +1,66 @@
-import "./newPostPage.scss";
+import "./newPagePost.scss";
+import { useState } from "react";
+import apiRequest from "../../lib/apiRequest";
+import { useNavigate } from "react-router-dom";
 
 function NewPostPage() {
+  const [value, setValue] = useState("")
+  const [error, setError] = useState("")
+  const [imgs, setImgs] = useState(["/noavatar.jpg", "/noavatar.jpg", "/noavatar.jpg", "/noavatar.jpg"])
+  const navigate = useNavigate()
+
+  const handleSubmit = async e => {
+    e.preventDefault()
+    const formData = new FormData(e.target)
+    const inputs = Object.fromEntries(formData)
+
+    try {
+
+      const res = await apiRequest.post("/posts/", {
+        postData: {
+          title: inputs.title,
+          price: parseInt(inputs.price),
+          address: inputs.address,
+          city: inputs.city,
+          bedroom: parseInt(inputs.bedroom),
+          bathroom: parseInt(inputs.bathroom),
+          type: inputs.type,
+          property: inputs.property,
+          latitude: inputs.latitude,
+          longitude: inputs.longitude,
+          img: imgs,
+        },
+        postDetails: {
+          desc: value,
+          utilities: inputs.utilities,
+          pet: inputs.pet,
+          income: inputs.income,
+          size: parseInt(inputs.size),
+          school: parseInt(inputs.school),
+          bus: parseInt(inputs.bus),
+          restaurant: parseInt(inputs.restaurant),
+        },
+      })
+      console.log(res.data)
+      navigate(`/${res.data.id}`)
+
+    } catch(err) {
+      console.log(err)
+      setError(err.response.data.msg)
+    }
+  }
+
   return (
     <div className="newPostPage">
       <div className="foooormContainer">
         <h1>Add New Post</h1>
         <div className="wwwrapper">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="iitem">
               <label htmlFor="title">Title</label>
               <input id="title" name="title" type="text" />
             </div>
+            
             <div className="iitem">
               <label htmlFor="price">Price</label>
               <input id="price" name="price" type="number" />
@@ -21,6 +71,7 @@ function NewPostPage() {
             </div>
             <div className="iitem description">
               <label htmlFor="desc">Description</label>
+              <input onChange={setValue} value={value}/>
             </div>
             <div className="iitem">
               <label htmlFor="city">City</label>
@@ -54,7 +105,7 @@ function NewPostPage() {
             <div className="iitem">
               <label htmlFor="type">Property</label>
               <select name="property">
-                <option value="apartment">Apartment</option>
+                <option value="apartmen">Apartment</option>
                 <option value="house">House</option>
                 <option value="condo">Condo</option>
                 <option value="land">Land</option>
@@ -101,10 +152,16 @@ function NewPostPage() {
               <input min={0} id="restaurant" name="restaurant" type="number" />
             </div>
             <button className="sendButton">Add</button>
+            {error && <span>{error}</span>}
           </form>
         </div>
       </div>
-      <div className="sideContainer"></div>
+      <div className="sideContainer">
+        {imgs.map((img, index)=> (
+          <img src={img} key={index} alt="" />
+        ))}
+        {/* {Not using cloudnary UploadWidget} */}
+      </div>
     </div>
   );
 }

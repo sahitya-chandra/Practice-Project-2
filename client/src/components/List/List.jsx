@@ -1,13 +1,11 @@
-import { listData } from "../../lib/dummyData";
 import Card from "../card/Card";
 import "./List.css"
 
-const List = () => {
-
+const List = ({posts}) => {
 
     return (
         <div className="listt">
-            {listData.map(item=> (
+            {posts.map(item=> (
                 <Card item={item} key={item.id} />
             ))}
         </div>
