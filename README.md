@@ -8,18 +8,18 @@ npm install
 
 or
 
-yarn install/
+yarn install
 
 # For Backend
-cd api/
+cd api
 
-node app.js/
+node app.js
 
 # For Frontend
-cd client/
+cd client
 
-npm run dev/
+npm run dev
 
-or/
+or
 
-yarn dev/
+yarn dev
